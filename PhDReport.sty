@@ -18,6 +18,11 @@
 \RequirePackage{setspace} % Intervalo tarp eilučių nustatymui
 \RequirePackage[T1]{fontenc} % Teksto koduotei nustatyti
 \RequirePackage{pgf}      % Paveikslėlių įterpimui į norimą vietą 
+\RequirePackage[
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=black,
+]{hyperref}
 \RequirePackage{tabularx} % Plačioms lentelems su spalvotom briaunom
 \RequirePackage{ctable}   % Pastorinti arba nuspalvinti lentelės briaunoms
 
@@ -25,6 +30,7 @@
 \setpapersize[portrait]{A4}   % Lapo formatas
 \setlength{\parindent}{0.7cm} % Pirmos eilutes atitraukimas
 \renewcommand*\rmdefault{ppl} % 'Serif' šriftas visame dokumente (Palatino)  
+\setlength{\textheight}{750pt}
 
 %% Kintamųjų, kuriuos turi nurodyti naudotojas, aprašai
 \newcommand{\universitylogo}[1]{\def\@universitylogo{#1}}
@@ -58,11 +64,6 @@
 
     \setmargnohfrb{30mm}{23mm}{30mm}{35mm} % Titulinio lapo paraštės
     \begin{center}
-      % Logotipų tituliniame lape įterpimas
-      \pgfputat{\pgfxy(-0.2, -2.4)}{\pgfbox[left,base]{
-          \includegraphics[width=0.19\textwidth]{\@universitylogo}}}
-      \pgfputat{\pgfxy(11.9, -2.3)}{\pgfbox[left,base]{
-          \includegraphics[width=0.2\textwidth]{\@departmentlogo}}}
 
       % Universiteto ir departamento pavadinimai tarp paveikslėlių
       \parbox[b]{0.5\textwidth}{
@@ -74,7 +75,7 @@
 
       % Mokslo krypties tarp storų juodų linijų įterpimas
       \begin{tabularx}{1\textwidth}{>{\setlength\hsize{1\hsize}\centering}X}
-        \specialrule{.3em}{2.5em}{0.1em}   % Stora linija
+        \specialrule{.3em}{2.5em}{0.3em}   % Stora linija
         \large\MakeUppercase{\@scientifictrend} \tabularnewline
         \specialrule{.3em}{0em}{0em}  % Stora linija
       \end{tabularx}
@@ -87,9 +88,15 @@
       {\Large \sffamily \@date}
       \vskip 1.2cm   % Ataskaitos aprašas
       {\Large \sffamily  Mokslinė ataskaita \@reportid}
-      \vskip 2.5cm   % Departamento rekvizitai
+      \vskip 8.5cm   % Departamento rekvizitai
       \onehalfspacing
-      {\small \@departmentdetails}
+      \@departmentdetails
+
+      %% Logotipų tituliniame lape įterpimas
+      \pgfputat{\pgfxy(-0.2, 22)}{\pgfbox[left,base]{
+          \includegraphics[width=0.19\textwidth]{\@universitylogo}}}
+      \pgfputat{\pgfxy(11.9, 22.2)}{\pgfbox[left,base]{
+          \includegraphics[width=0.2\textwidth]{\@departmentlogo}}}
     \end{center}
   \end{titlepage}%
 

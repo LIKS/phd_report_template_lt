@@ -4,7 +4,6 @@
 \usepackage[\LTfontencoding]{fontenc}
 \usepackage[lithuanian]{babel}
 \usepackage{PhDReport}
-\usepackage{cite}
 \usepackage{amsmath}
 \usepackage{bm}
 \usepackage{amsfonts}
@@ -19,16 +18,17 @@
 \usepackage{caption}
 \usepackage{subfig}
 \usepackage{datetime}
+\usepackage{cite}
 
 \universitytitle{Vilniaus universitetas}
 \departmenttitle{Matematikos ir informatikos institutas}
 \departmentdetails{VU Matematikos ir informatikos institutas, Akademijos g. 4,
-Vilnius LT-08663 \\ www.mii.lt}
+Vilnius LT-08663 \\ \href{http://www.mii.lt}{www.mii.lt}}
 \universitylogo{img/vu_logo}
 \departmentlogo{img/mii_logo}
 \date{\the\year\ m.\monthlt[\month]}
-\scientifictrend{Informatikos inžinerija (07 T)}
-\reportid{MII-DS-07T-\shortyear-<ataskaitos nr.>}
+\scientifictrend{Informatika (09 P)}
+\reportid{MII-DS-09P-\shortyear-<ataskaitos nr.>}
 
 \title{<temos pavadinimas>}
 \author{<Autorius>}
@@ -40,7 +40,7 @@ Vilnius LT-08663 \\ www.mii.lt}
 \sectionnonumnocontent{Santrauka}\noindent
 ............
 
-\keywords{....., .....}
+\keywords{.........}
 
 \tableofcontents
 
@@ -52,13 +52,9 @@ ataskaitinį periodą (parašyti disertacijos skyrių, parengti kokią nors meto
 ar pan.; gali būti parengtų spaudai straipsnių tekstai). Pas ką plane tokių
 įsipareigojimų nebuvo, mokslinės ataskaitos rengti nebūtina.
 
-\subsection{<ataskaitos poskyrio pavyzdys>}
-Citavimo pavyzdys \cite{VP}.
-
 \section{Literatūra}
-Autoriaus publikuoti straipsniai ir knygos.
 
-\bibliography{bibliografija}
+% \bibliography{bibliografija}
 
 \appendix
 \section{Algoritmų palyginamųjų eksperimentų rezultatų lentelė}
@@ -77,12 +73,10 @@ Autoriaus publikuoti straipsniai ir knygos.
   \label{tab:table example}
 \end{table}
 
-\pagebreak
-
-\section{Sudėtingų geometrinių paviršių sankirtos paveikslėlis}
+\section{Daugiasluoksio perceptrono struktūra}
 \begin{figure}[H]
     \centering
-\includegraphics[scale=0.13]{img/cones}
+\includegraphics[scale=0.5]{img/MLP}
 \caption{Paveikslėlio pavyzdys}
 \end{figure}
 
