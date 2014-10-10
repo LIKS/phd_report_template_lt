@@ -25,12 +25,22 @@
 ]{hyperref}
 \RequirePackage{tabularx} % Plačioms lentelems su spalvotom briaunom
 \RequirePackage{ctable}   % Pastorinti arba nuspalvinti lentelės briaunoms
+\RequirePackage{fancyhdr}
+\RequirePackage{tabularx}
+\RequirePackage{graphicx}
 
 %% Nustatymai
 \setpapersize[portrait]{A4}   % Lapo formatas
-\setlength{\parindent}{0.7cm} % Pirmos eilutes atitraukimas
+\setlength{\parindent}{0.0cm} % Pirmos eilutes atitraukimas
+\setlength{\parskip}{0.35cm}  % Tarpai tarp paragrafų
 \renewcommand*\rmdefault{ppl} % 'Serif' šriftas visame dokumente (Palatino)  
-\setlength{\textheight}{750pt}
+\sloppy  % Tolygiai paskirsto tekstą nuo kairės iki dešinės paraštės
+\setlength{\textheight}{665pt} % Puslapio bloko dydį padidiname, kad galėtumėme
+                               % nustatyti apatinės paraštės aukštį pirmame psl.
+\renewcommand{\headrulewidth}{0pt}% Panaikiname viršutinės eilutės liniją
+\renewcommand{\footrulewidth}{0pt}% Panaikiname apatinės eilutės liniją
+% Atnaujinamas \tabularxcolumn paveikslėlių įterpimui
+\renewcommand{\tabularxcolumn}[1]{>{\centering\arraybackslash}m{#1}}
 
 %% Kintamųjų, kuriuos turi nurodyti naudotojas, aprašai
 \newcommand{\universitylogo}[1]{\def\@universitylogo{#1}}
@@ -51,6 +61,7 @@
 %% Titulinio puslapio pavaizdavimas
 \renewcommand\maketitle{
   \begin{titlepage}%
+
     \errorifundefined{@universitylogo}%
       {Nenurodytas universiteto logotipo failas (komanda \protect\universitylogo)}
     \errorifundefined{@departmentlogo}%
@@ -64,39 +75,34 @@
 
     \setmargnohfrb{30mm}{23mm}{30mm}{35mm} % Titulinio lapo paraštės
     \begin{center}
-
-      % Universiteto ir departamento pavadinimai tarp paveikslėlių
-      \parbox[b]{0.5\textwidth}{
-         \centering 
-         \large\textbf{\@universitytitle} \\
-         \textbf{\@departmenttitle} \\
-         \textbf{L I E T U V A}  
-      } \par
+      \begin{tabularx}{\linewidth}{@{}m{.2\linewidth}Xm{.2\linewidth}@{}}
+           \includegraphics[width=0.2\textwidth]{img/vu_logo}  &
+           \Large\textbf{\@universitytitle}  \par 
+           \textbf{\@departmenttitle} \par 
+           \textbf{L I E T U V A} & 
+           \includegraphics[width=0.19\textwidth]{img/mii_logo} \\
+      \end{tabularx}
 
       % Mokslo krypties tarp storų juodų linijų įterpimas
       \begin{tabularx}{1\textwidth}{>{\setlength\hsize{1\hsize}\centering}X}
-        \specialrule{.3em}{2.5em}{0.2em}   % Stora linija
-        \large\MakeUppercase{\@scientifictrend} \tabularnewline
+        \specialrule{.3em}{0.9em}{0.3em}   % Stora linija
+        \Large\MakeUppercase{\@scientifictrend} \tabularnewline
         \specialrule{.3em}{0em}{0em}  % Stora linija
       \end{tabularx}
 
-      \vskip 3.5cm   % Temos pavadinimas
-      {\LARGE \bf \MakeUppercase{\@title}}
-      \vskip 1.8cm   % Autorius
-      {\large \bf \@author}
-      \vskip 1.6cm   % Data
-      {\Large \sffamily \@date}
-      \vskip 1.2cm   % Ataskaitos aprašas
-      {\Large \sffamily  Mokslinė ataskaita \@reportid}
+      \vskip 2.8cm   % Temos pavadinimas
+      {\huge \bf \MakeUppercase{\@title}}
+      \vskip 1.5cm   % Autorius
+      {\LARGE \bf \@author}
+      \vskip 1.3cm   % Data
+      {\LARGE \sffamily \@date}
+      \vskip 0.5cm   % Ataskaitos aprašas
+      {\LARGE \sffamily  Mokslinė ataskaita \@reportid}
       \vskip 8.5cm   % Departamento rekvizitai
-      \onehalfspacing
-      \@departmentdetails
 
-      %% Logotipų tituliniame lape įterpimas
-      \pgfputat{\pgfxy(-0.2, 22)}{\pgfbox[left,base]{
-          \includegraphics[width=0.19\textwidth]{\@universitylogo}}}
-      \pgfputat{\pgfxy(11.9, 22.2)}{\pgfbox[left,base]{
-          \includegraphics[width=0.2\textwidth]{\@departmentlogo}}}
+      \fancyfoot[C]{\onehalfspacing \@departmentdetails}
+      \thispagestyle{fancy}
+
     \end{center}
   \end{titlepage}%
 
@@ -137,6 +143,7 @@
     \gdef\@reportid{#2}
     \gdef\container@keep@reportid{#1}
 }
+
 \def\ps@plain{% Nustatoma apatinės puslapio eilutės reikšmė
     \renewcommand{\@oddhead}{}%
     \renewcommand{\@evenhead}{}%
@@ -147,20 +154,20 @@
 %% Turinio pavaizdavimo atnaujinimas
 \renewcommand\tableofcontents{%
   % Visame dokumente už titulinio lapo paraštės bus:
-  \setmarginsrb{3cm}{2cm}{1.5cm}{2.2cm}{12pt}{20pt}{0pt}{0mm}%
+  \setmarginsrb{3cm}{2cm}{1.5cm}{2.5cm}{12pt}{20pt}{0pt}{0mm}%
   \pagestyle{plain}%
   
   \begin{singlespacing}   % Turinys bus su viengubu intervalu tarp eilučių
     \cleardoublepage%
     % Gražus turinio pavadinimas
     \section*{\color[RGB]{23,54,93}
-      \huge\centering\contentsname\hfill  % Žodis 'Turinys' 
+      \Huge\centering\contentsname\hfill  % Žodis 'Turinys' 
       \color[RGB]{79,129,189} \\  % Mėlynos spalvos brūkšnys po 'Turinys'
       \begin{tabularx}{1\textwidth}{>{\setlength\hsize{1\hsize}\centering}X}
          \specialrule{0.05em}{-1em}{0em}
       \end{tabularx}}%
-    \begin{minipage}{0.95\textwidth} % Turinio paraštes padarome kaip teksto
-      \@starttoc{toc}                % įdėdami sugeneruotą turinį į dėžutę 
+    \begin{minipage}{\textwidth}
+      \@starttoc{toc}
     \end{minipage}
   \end{singlespacing}%
   \newpage%
@@ -257,7 +264,7 @@
 % Raktinių žodžių komanda
 \newcommand\keywords[1]{%
     \bigskip
-    \noindent \textbf{Raktiniai žodžiai:}\, \textbf{#1}
+    \noindent \textbf{Raktiniai žodžiai:}\; \textbf{#1}
 }
 % Apibrėžiame ketvirto lygio skyrius
 \newcommand{\subsubsubsection}{\subsubparagraph}
