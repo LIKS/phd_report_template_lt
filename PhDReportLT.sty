@@ -28,6 +28,10 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{tabularx}
 \RequirePackage{graphicx}
+% \RequirePackage{algpseudocode}
+\RequirePackage{algorithm}
+% \RequirePackage{algorithmicx}
+\RequirePackage{caption}
 
 %% Nustatymai
 \setpapersize[portrait]{A4}   % Lapo formatas
@@ -279,6 +283,12 @@
 \stepcounter{tocdepth}
 \renewcommand{\paragraph}{\subparagraph}
 
+%% Išverčiama pseudokodo antraštė
+\makeatletter
+\renewcommand{\ALG@name}{algoritmas}
+\DeclareCaptionLabelFormat{numberfirst}{#2 \ALG@name}
+\captionsetup[algorithm]{labelformat=numberfirst} 
+\makeatother
 
 %% Dabartinis mėnuo lietuviškai, naudojimas: \monthlt[\month]
 \newcommand\monthlt[1][EMPTY]{

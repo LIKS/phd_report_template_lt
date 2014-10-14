@@ -54,7 +54,9 @@ ataskaitinį periodą (parašyti disertacijos skyrių, parengti kokią nors meto
 ar pan.; gali būti parengtų spaudai straipsnių tekstai). Pas ką plane tokių
 įsipareigojimų nebuvo, mokslinės ataskaitos rengti nebūtina.
 
-\section{Literatūra}% Jeigu panaudojote \cite bent kartą, užkomentuokite šia eilutę 
+\section{Išvados}
+
+\section*{\emph{Literatūra}}% Jeigu panaudojote \cite bent kartą, užkomentuokite šia eilutę 
                     % Atkomentuokite sekančią ir eilutes Makefile faile 
 % \bibliography{bibliografija}   
 
@@ -79,6 +81,25 @@ ar pan.; gali būti parengtų spaudai straipsnių tekstai). Pas ką plane tokių
     \centering
 \includegraphics[scale=0.5]{img/MLP}
 \caption{Paveikslėlio pavyzdys}
+\label{img:mlp}
 \end{figure}
+
+\newpage
+\section{\texttt{PAVYZDINIS\_ALGORITMAS} algoritmo pseudokodas}
+\begin{algorithm}[H]
+\caption{Algoritmo pseudokodo rašymo pavyzdys}
+\begin{algorithmic}[1]
+    \Procedure{pavyzdinis\_algoritmas}{$n, d, A$}
+    \State $i \gets d $
+    \While{$i < n$}
+        \ForAll{$r \in A $}
+            \State $v \gets f(r)$  \Comment{žr. pav. \ref{img:mlp}.}
+        \EndFor
+        \State $i \gets i + 1$
+    \EndWhile
+\EndProcedure
+\end{algorithmic}
+\label{alg:multivariate pseudocode}
+\end{algorithm}
 
 \end{document}
